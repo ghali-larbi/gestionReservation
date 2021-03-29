@@ -40,9 +40,16 @@ public class StudentServiceImpl implements StudentService {
 		List<Student> student = getStudentDAO().getListStudent();
 		return student;
 	}
+	
+	
 	@Override
-	public void updateValider(Student student) {
-		getStudentDAO().updateValider(student);
+	public List<Student> getListStudentValidation() {
+		List<Student> student = getStudentDAO().getListStudentValidation();
+		return student;
+	}
+	@Override
+	public void updateValider(int id) {
+		getStudentDAO().updateValider(id);
 	
 	}
 }

@@ -42,7 +42,7 @@ public class Student {
 	@Column(name = "last_name")
 	private String LastName;
 	
-	
+	@NotNull
 	@Min(value = 1000000000)
 	@Column(name = "phone")
 	private Long phone;
@@ -51,7 +51,8 @@ public class Student {
 	@Column(name = "role")
 	private String role;
 	
-	
+	public Student() {
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -118,19 +119,8 @@ public class Student {
 		this.role = role;
 	}
 	
-	public Student(int id, String email, String password, String firstName, String lastName, Long phone, String role,String validation) {
-		
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		LastName = lastName;
-		this.phone = phone;
-		this.role = role;
-		this.validation = validation;
-	}
-
-	
-	public Student() {
+	public Student(int id, String validation) {
+		this.id=id;
+		this.validation=validation;
 	}
 }

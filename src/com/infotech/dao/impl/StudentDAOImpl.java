@@ -44,18 +44,35 @@ public class StudentDAOImpl implements StudentDAO {
 			Session session = hibernateTemplate.getSessionFactory().openSession();
 			// start a transaction
 			transaction = session.beginTransaction();
-			listUser =   session.createQuery("from Student where validation='noValid'").list();
+			listUser =   session.createQuery("from Student ").list();
 			return listUser;
 			
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Student> getListStudentValidation(){
+		 Transaction transaction = null;
+		 List<Student>  listUser =null;
+			Session session = hibernateTemplate.getSessionFactory().openSession();
+			// start a transaction
+			transaction = session.beginTransaction();
+			listUser =   session.createQuery("from Student Where validation='noValid' ").list();
+			return listUser;
+			
+	}
 
 	@Override
-	public void updateValider(Student student) {
+	public void updateValider(int id) {
 		Session session = hibernateTemplate.getSessionFactory().openSession();
 		// start a transaction
 		Transaction transaction = session.beginTransaction();
-		session.update(student);
+		Query query= session.createQuery("update Student set validation='Valid' where id=:id");
+		query.setParameter("id",id);
+       query.executeUpdate();
+       
+		System.out.println(query);
 		// commit transaction
 		transaction.commit();
 	     

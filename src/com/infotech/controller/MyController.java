@@ -75,31 +75,38 @@ public class MyController {
 	@RequestMapping(value ="/loginSuccess" ,method=RequestMethod.POST)
 	public ModelAndView loginSuccess(@RequestParam("email") String email,@RequestParam("password") String password,HttpServletRequest request,HttpServletRequest response){
 		List<Student>listUtilisateur= getStudentService().getListStudent();
-		ModelAndView path=null;
+		 System.out.println("email"+email+"password"+password);
+		String path="";
 		 for (int i = 0; i < listUtilisateur.size(); i++){
-             if(listUtilisateur.get(i).getRole().equals("apprenant")){
+             if(listUtilisateur.get(i).getRole().equals("apprenant") && listUtilisateur.get(i).getValidation().equals("Valid")){
+            	 System.out.println("thats true !!!");
                  if(listUtilisateur.get(i).getEmail().equals(email) && listUtilisateur.get(i).getPassword().equals(password) ){
                    HttpSession client= request.getSession();
                  client.setAttribute("role",listUtilisateur.get(i).getRole());
                  client.setAttribute("nom",listUtilisateur.get(i).getLastName());
-		           path= new ModelAndView("welcome");  
+                 path="welcome";
                  }
              }
-             else if(listUtilisateur.get(i).getRole().equals("administrateur")){
+             
+             
+              if(listUtilisateur.get(i).getRole().equals("administrateur")){
                  if(listUtilisateur.get(i).getEmail().equals(email) && listUtilisateur.get(i).getPassword().equals(password) ){
-                   HttpSession admin= request.getSession();
-                 admin.setAttribute("role",listUtilisateur.get(i).getRole());
-                 admin.setAttribute("nom",listUtilisateur.get(i).getLastName());
-                  path = new ModelAndView("welcome");   
-                 }        
+                	 System.out.println("thats true admin !!!");
+                  HttpSession admin= request.getSession();
+                  admin.setAttribute("role",listUtilisateur.get(i).getRole());
+                  admin.setAttribute("nom",listUtilisateur.get(i).getLastName());
+                  path="welcome";
+                 }
+                 else {
+                	 path="login";
+                 }
              }
-               
            } 
-		return path;
+		 return new ModelAndView(path);
 	}
 	@RequestMapping(value ="/listApprenant" ,method=RequestMethod.GET)
 	public ModelAndView listeApprenant(HttpServletRequest request){
-		List<Student>listUtilisateur= getStudentService().getListStudent();
+		List<Student>listUtilisateur= getStudentService().getListStudentValidation();
 		System.out.println(listUtilisateur.size());
 		System.out.println(listUtilisateur.get(0).getEmail());
 		request.setAttribute("listApprenant", listUtilisateur);
@@ -107,10 +114,8 @@ public class MyController {
 	}
 	@RequestMapping(value ="/valider/{id}" ,method=RequestMethod.GET)
 	public ModelAndView updateValidation(HttpServletRequest request,@PathVariable int id){
-		
 		System.out.println("le id est :"+id);
-		Student student=new Student(id, "larbiiiiii", "larbighali@gmail.com", "ghalii", "ggggggggggg",null, "apprenant","valid");
-		getStudentService().updateValider(student);
+		getStudentService().updateValider(id);
 		return new ModelAndView("listApprenant");
 	}
 }

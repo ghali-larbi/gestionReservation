@@ -87,7 +87,7 @@
 <!-- Footer Links -->
 <!-- Copyright -->
 <div class="footer-copyright text-center py-3 bg-dark">© 2020 Copyright:
-  <a href="https://mdbootstrap.com/"> poterie.com</a>
+  <a href="https://mdbootstrap.com/"> reservation.com</a>
 </div>
 <!-- Copyright -->
 </footer>

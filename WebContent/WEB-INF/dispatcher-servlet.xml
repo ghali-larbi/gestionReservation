@@ -46,8 +46,12 @@
 		<property name="annotatedClasses">
 			<array>
 				<value>com.infotech.model.Student</value>
+				<value>com.infotech.model.Calendrier</value>
+				<value>com.infotech.model.reservation</value>
 			</array>
 		</property>
+	
+		
 
 		<property name="hibernateProperties">
 			<props>

@@ -46,6 +46,7 @@ public class MyController {
 		return "welcome";
 	}
 	
+
 	@RequestMapping(value ="/login" ,method=RequestMethod.GET)
 	public String loginPage(Model model){
 		model.addAttribute("studentCredential", new StudentCredential());
@@ -82,6 +83,7 @@ public class MyController {
             	 System.out.println("thats true !!!");
                  if(listUtilisateur.get(i).getEmail().equals(email) && listUtilisateur.get(i).getPassword().equals(password) ){
                    HttpSession client= request.getSession();
+                   client.setAttribute("id",listUtilisateur.get(i).getId());
                  client.setAttribute("role",listUtilisateur.get(i).getRole());
                  client.setAttribute("nom",listUtilisateur.get(i).getLastName());
                  path="welcome";
@@ -118,4 +120,6 @@ public class MyController {
 		getStudentService().updateValider(id);
 		return new ModelAndView("listApprenant");
 	}
+	
+	
 }

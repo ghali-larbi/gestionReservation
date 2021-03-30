@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.infotech.dao.StudentDAO;
+import com.infotech.model.Calendrier;
 import com.infotech.model.Student;
 import com.infotech.service.StudentService;
 
@@ -53,3 +54,4 @@ public class StudentServiceImpl implements StudentService {
 	
 	}
 }
+

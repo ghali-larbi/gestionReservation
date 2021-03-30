@@ -1,10 +1,14 @@
 package com.infotech.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -59,6 +63,16 @@ public class Student {
 	@NotEmpty
 	@Column(name = "validation")
 	private String validation;
+	
+	@OneToMany(mappedBy = "student_table")
+	private List<reservation> reservation;
+	
+	public List<reservation> getReservation() {
+		return reservation;
+	}
+	public void setReservation(List<reservation> reservation) {
+		this.reservation = reservation;
+	}
 	public String getValidation() {
 		return validation;
 	}
@@ -123,4 +137,33 @@ public class Student {
 		this.id=id;
 		this.validation=validation;
 	}
+
+	
+	public Student(int id, String email, String password, String firstName, String lastName, Long phone, String role,
+			String validation) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		LastName = lastName;
+		this.phone = phone;
+		this.role = role;
+		this.validation = validation;
+	}
+	public Student(String email, String password, String firstName, String lastName, Long phone, String role,
+			String validation) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		LastName = lastName;
+		this.phone = phone;
+		this.role = role;
+		this.validation = validation;
+
+	}
+	
+	
+	
 }

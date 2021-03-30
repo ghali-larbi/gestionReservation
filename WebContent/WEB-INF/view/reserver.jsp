@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +9,39 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
- <h1 class="mt-5 col-12 d-flex justify-content-center">Reserver</h1>
-        <div class="col-12 d-flex justify-content-center mt-3">   
-        <div class="col-6 ">
-             <form action="reserver" method="post">
-               
-               
-            </form>
-        </div>
-        </div>
-        </div>
+ <div class="row">
+		<!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
+
+		<div class="container">
+			<h3 class="text-center mt-5">calendrier</h3>
+			<br>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						                        
+                                                <th>date </th>
+                                                <th>heure</th>
+                                                <th>nombre place</th>
+                                                <th>action</th>
+					</tr>
+				</thead>
+				<tbody>    
+                    <c:forEach var="calendrier" items="${Calendrier}">
+						<tr>
+						<form method="post" action="reservation">
+	   				      <td><input type="hidden" name="dateCalendrier" value="${calendrier.dateCalendrier}">${calendrier.dateCalendrier}</td>
+                            <td><input type="hidden" name="heureCalendrier" value="${calendrier.heureCalendrier}">${calendrier.heureCalendrier}</td>
+                            <td><input type="hidden" name="nombrePlace" value="${calendrier.nombrePlace}">${calendrier.nombrePlace}</td>
+							<td><button class="btn btn-md btn-warning" type="submit">reserver</button></td>
+						</tr>
+					</c:forEach>
+
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+ 
 
 <jsp:include page="footer.jsp" />

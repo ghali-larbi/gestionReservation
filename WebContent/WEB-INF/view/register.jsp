@@ -120,7 +120,7 @@ body {
 				<input type="text" name="FirstName" placeHolder="FirstName"/>
 				<input type="text" name="LastName" placeHolder="LastName"/>
 				<input type="text" name="phone" placeHolder="phone"/>
-                <input type="text" name="role" placeHolder="role"/>
+                <input type="hidden" name="role" placeHolder="role" value="apprenant"/>
                 <input type="hidden" name="validation" value="noValid"/>
 				<button type="submit">register</button>
 

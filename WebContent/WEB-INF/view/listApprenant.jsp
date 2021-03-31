@@ -22,16 +22,17 @@
 				</thead>
 				<tbody>
 					
-                                     
+                            
                     <c:forEach var="apprenant" items="${listApprenant}">
 						<tr>
+						
 	   				      <td>${apprenant.firstName}</td>
                             <td>${apprenant.email}</td>
                             <td>${apprenant.phone}</td>
 							<td><a class="btn btn-md btn-warning" href="valider/${apprenant.id}">valider</a></td>
 						</tr>
 					</c:forEach>
-
+                  
 				</tbody>
 
 			</table>

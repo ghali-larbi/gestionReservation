@@ -13,12 +13,13 @@
 		<!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
 		<div class="container">
-			<h3 class="text-center mt-5">calendrier</h3>
+			<h3 class="text-center mt-5">listeReservation</h3>
 			<br>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						                        
+						                        <th>id </th>
+						                        <th>nom </th>
                                                 <th>date </th>
                                                 <th>heure</th>
                                                 <th>nombre place</th>
@@ -26,14 +27,14 @@
 					</tr>
 				</thead>
 				<tbody>    
-                    <c:forEach var="calendrier" items="${Calendrier}">
+                    <c:forEach var="reservation" items="${listReservation}">
 						<tr>
-						<form method="post" action="reservation">
-	   				      <td><input type="hidden" name="dateCalendrier" value="${calendrier.dateCalendrier}">${calendrier.dateCalendrier}</td>
-                            <td><input type="hidden" name="heureCalendrier" value="${calendrier.heureCalendrier}">${calendrier.heureCalendrier}</td>
-                            <td><input type="hidden" name="nombrePlace" value="${calendrier.nombrePlace}">${calendrier.nombrePlace}</td>
-                           
-							<td><button class="btn btn-md btn-warning" type="submit">reserver</button></td>
+					        <td>${reservation.student_table.id}</td>
+					        <td>${reservation.student_table.firstName}</td>
+	   				      <td>${reservation.dateCalendrier}</td>
+                            <td>${reservation.heureCalendrier}</td>
+                            <td>${reservation.nombrePlace}</td>
+							<td><a class="btn btn-md btn-warning" href="validerReservation/${reservation.idresevation}">valider</a></td>
 						</tr>
 					</c:forEach>
 

@@ -9,6 +9,7 @@ import com.infotech.dao.CalendrierDao;
 import com.infotech.dao.StudentDAO;
 import com.infotech.model.Calendrier;
 import com.infotech.model.Student;
+import com.infotech.model.reservation;
 import com.infotech.service.CalendrierService;
 
 @Service("CalendrierService")
@@ -36,16 +37,40 @@ public class CalendrierServiceImpl implements CalendrierService {
 		return calendrier;
 	}
 	@Override
-	public int makeCalendrier(Calendrier calendrier, int id) {
+	public int makeCalendrier(reservation resrv, int id) {
 		String reservationDate;
 		String reservationTime;
 		int seatsNumber;
-		reservationDate = calendrier.getDateCalendrier();
-		reservationTime = calendrier.getHeureCalendrier();
-		seatsNumber = calendrier.getNombrePlace();
+		String valid;
+		reservationDate = resrv.getDateCalendrier();
+		reservationTime = resrv.getHeureCalendrier();
+		seatsNumber = resrv.getNombrePlace();
+		valid=resrv.getValidation();
 		System.out.println(reservationDate+"/"+reservationTime+"/"+id);
-		int affectedRow = getCalendrierDAO().makeCalendrier(reservationDate, reservationTime, seatsNumber, id);
+		int affectedRow = getCalendrierDAO().makeCalendrier(reservationDate, reservationTime, seatsNumber,valid, id);
 		return affectedRow;
+	}
+
+	@Override
+	public List<reservation> getListReservation() {
+		List<reservation> reservation = getCalendrierDAO().getListReservation();
+		return reservation;
+	}
+	@Override
+	public List<reservation> getListReservationValidation() {
+		List<reservation> reservation = getCalendrierDAO().getListReservationValidation();
+		return reservation;
+	}
+	@Override
+	public void updateReservation(int id) {
+		getCalendrierDAO().updateReservation(id);
+		
+	}
+
+	@Override
+	public void nombrePlace(int id) {
+		getCalendrierDAO().nombrePlace(id);
+		
 	}
 }
 

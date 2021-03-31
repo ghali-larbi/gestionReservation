@@ -25,19 +25,28 @@ public class reservation {
 	@Column(name = "nombrePlace")
 	private int nombrePlace;
 	
+	@Column(name = "validation")
+	private String validation;
 	
-
 	
+	public reservation(String dateCalendrier, String heureCalendrier, int nombrePlace, String validation) {
+		super();
+		this.dateCalendrier = dateCalendrier;
+		this.heureCalendrier = heureCalendrier;
+		this.nombrePlace = nombrePlace;
+		this.validation = validation;
+	}
 	public reservation(int idresevation, String dateCalendrier, String heureCalendrier, int nombrePlace,
-			Student student_table) {
+			String validation, Student student_table) {
 		super();
 		this.idresevation = idresevation;
 		this.dateCalendrier = dateCalendrier;
 		this.heureCalendrier = heureCalendrier;
 		this.nombrePlace = nombrePlace;
+		this.validation = validation;
 		this.student_table = student_table;
 	}
-	
+
 	@ManyToOne
 	private Student student_table;
 
@@ -48,34 +57,24 @@ public class reservation {
 		this.nombrePlace = nombrePlace;
 		this.student_table = student_table;
 	}
-
-	
-
-	
+	public String getValidation() {
+		return validation;
+	}
+	public void setValidation(String validation) {
+		this.validation = validation;
+	}
 
 	public reservation() {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
-
 	public int getIdresevation() {
 		return idresevation;
 	}
 
-
-
-
-
 	public void setIdresevation(int idresevation) {
 		this.idresevation = idresevation;
 	}
-
-
-
-
 
 	public String getDateCalendrier() {
 		return dateCalendrier;

@@ -65,10 +65,13 @@
 </style>
 </head>
 <body>
-<%
-   if(session.getAttribute("role")==null ){
+      <%
+            if(session.getAttribute("role")==null ){
         	   response.sendRedirect("/login");  
            }
+            else{
+            	response.sendRedirect("/login");  
+            }
        %>
      
 <header>

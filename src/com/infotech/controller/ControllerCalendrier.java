@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.infotech.model.Calendrier;
 import com.infotech.model.Student;
+import com.infotech.model.reservation;
 import com.infotech.service.CalendrierService;
 import com.infotech.service.StudentService;
 
@@ -26,12 +28,14 @@ public class ControllerCalendrier {
 	public void setCalendrierService(CalendrierService calendrierService) {
 		this.calendrierService = calendrierService;
 	}
-	
 	public CalendrierService getCalendrierService() {
 		return calendrierService;
 	}
 	@RequestMapping(value ="/calendrier" ,method=RequestMethod.GET)
-	public String CalendrierPage(){
+	public String CalendrierPage(HttpSession session){
+		if(session.getAttribute("role")==null) {
+			return "/login";	
+			}
 		return "calendrier";
 	}
 	@RequestMapping(value ="ajouterCalendrier" ,method=RequestMethod.POST)
@@ -39,27 +43,45 @@ public class ControllerCalendrier {
 	int affectedRow = calendrierService.saveCalendrier(calendrier);
 	return new ModelAndView("calendrier");
 	}
-	@RequestMapping(value ="/reserver" ,method=RequestMethod.GET)
+	@RequestMapping(value ="/reserver",method=RequestMethod.GET)
 	public ModelAndView listCalendrier(HttpServletRequest request)
 	{
 		List<Calendrier>calendrier= getCalendrierService().getListCalendrier();
 		System.out.println("size: "+calendrier.size());
-		request.setAttribute("Calendrier", calendrier);
+		if(calendrier.size()>0) {
+			request.setAttribute("Calendrier", calendrier);
+		}
 		return new ModelAndView("reserver");
    }
 	@RequestMapping(value ="/reservation" ,method=RequestMethod.POST)
-	public ModelAndView makeCalendrier(Calendrier calendrier, HttpServletRequest request,@RequestParam String dateCalendrier,@RequestParam String heureCalendrier,@RequestParam int nombrePlace)
+	public ModelAndView makeCalendrier(reservation resrv, HttpServletRequest request,@RequestParam String dateCalendrier,@RequestParam String heureCalendrier,@RequestParam int nombrePlace)
 	{
-		calendrier.setDateCalendrier(dateCalendrier);
-		calendrier.setHeureCalendrier(heureCalendrier);
-		calendrier.setNombrePlace(nombrePlace);
-		System.out.println(calendrier.getDateCalendrier());
-		
+		resrv.setDateCalendrier(dateCalendrier);
+		resrv.setHeureCalendrier(heureCalendrier);
+		resrv.setNombrePlace(nombrePlace);
+		resrv.setValidation("noValid");
+		System.out.println(resrv.getDateCalendrier());
 		HttpSession session= request.getSession();
 		int id=Integer.parseInt(session.getAttribute("id").toString());
-        
-		int affectedRow = getCalendrierService().makeCalendrier(calendrier,id);
+		int affectedRow = getCalendrierService().makeCalendrier(resrv,id);
+		
+		
 		 return new ModelAndView("reserver");
 	}
 	
+	@RequestMapping(value ="/listReservation" ,method=RequestMethod.GET)
+	public ModelAndView listReservation(HttpServletRequest request)
+	{
+		List<reservation>listReservation= getCalendrierService().getListReservationValidation();
+		System.out.println("size: "+listReservation.size());
+		request.setAttribute("listReservation", listReservation);
+		return new ModelAndView("listReservation");
+   }
+	@RequestMapping(value ="/validerReservation/{id}" ,method=RequestMethod.GET)
+	public ModelAndView updateValidation(HttpServletRequest request,@PathVariable int id){
+		System.out.println("le id est :"+id);
+		getCalendrierService().updateReservation(id);
+		getCalendrierService().nombrePlace(id);
+		return new ModelAndView("listReservation");
+	}
 }

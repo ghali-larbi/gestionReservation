@@ -38,11 +38,17 @@ public class MyController {
 	}
 	
 	@RequestMapping(value ="/" ,method=RequestMethod.GET)
-	public String homePage(){
+	public String homePage(HttpSession session){
+		if(session.getAttribute("role")==null) {
+			return "/login";	
+			}
 		return "login";
 	}
 	@RequestMapping(value ="/welcome" ,method=RequestMethod.GET)
-	public String WelcomePage(){
+	public String WelcomePage(HttpSession session){
+		if(session.getAttribute("role")==null) {
+			return "/login";	
+			}
 		return "welcome";
 	}
 	
@@ -89,9 +95,7 @@ public class MyController {
                  path="welcome";
                  }
              }
-             
-             
-              if(listUtilisateur.get(i).getRole().equals("administrateur")){
+                 if(listUtilisateur.get(i).getRole().equals("administrateur")){
                  if(listUtilisateur.get(i).getEmail().equals(email) && listUtilisateur.get(i).getPassword().equals(password) ){
                 	 System.out.println("thats true admin !!!");
                   HttpSession admin= request.getSession();
@@ -109,8 +113,6 @@ public class MyController {
 	@RequestMapping(value ="/listApprenant" ,method=RequestMethod.GET)
 	public ModelAndView listeApprenant(HttpServletRequest request){
 		List<Student>listUtilisateur= getStudentService().getListStudentValidation();
-		System.out.println(listUtilisateur.size());
-		System.out.println(listUtilisateur.get(0).getEmail());
 		request.setAttribute("listApprenant", listUtilisateur);
 		return new ModelAndView("listApprenant");
 	}

@@ -1,13 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="header.jsp" />
  <div class="row">
 		<!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
@@ -28,6 +19,7 @@
 				</thead>
 				<tbody>    
                     <c:forEach var="reservation" items="${listReservation}">
+                    
 						<tr>
 					        <td>${reservation.student_table.id}</td>
 					        <td>${reservation.student_table.firstName}</td>
@@ -36,6 +28,9 @@
                             <td>${reservation.nombrePlace}</td>
 							<td><a class="btn btn-md btn-warning" href="validerReservation/${reservation.idresevation}">valider</a></td>
 						</tr>
+						<c:if test="${reservation.nombrePlace} > 0">
+						<td>${reservation.nombrePlace}</td>
+						</c:if>
 					</c:forEach>
 
 				</tbody>

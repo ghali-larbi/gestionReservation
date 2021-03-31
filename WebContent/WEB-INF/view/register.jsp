@@ -123,6 +123,7 @@ body {
                 <input type="hidden" name="role" placeHolder="role" value="apprenant"/>
                 <input type="hidden" name="validation" value="noValid"/>
 				<button type="submit">register</button>
+				<p class="message">Already registered? <a href="login">Sign In</a></p>
 
 	</form>
 </div>

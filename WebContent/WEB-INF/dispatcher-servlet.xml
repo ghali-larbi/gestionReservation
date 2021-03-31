@@ -12,9 +12,9 @@
 
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="com.infotech.controller"></context:component-scan>
-	<context:component-scan base-package="com.infotech.service.impl"></context:component-scan>
-	<context:component-scan base-package="com.infotech.dao.impl"></context:component-scan>
+	<context:component-scan base-package="com.reservationEnligne.controller"></context:component-scan>
+	<context:component-scan base-package="com.reservationEnligne.service.impl"></context:component-scan>
+	<context:component-scan base-package="com.reservationEnligne.dao.impl"></context:component-scan>
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -45,9 +45,9 @@
 
 		<property name="annotatedClasses">
 			<array>
-				<value>com.infotech.model.Student</value>
-				<value>com.infotech.model.Calendrier</value>
-				<value>com.infotech.model.reservation</value>
+				<value>com.reservationEnligne.model.Student</value>
+				<value>com.reservationEnligne.model.Calendrier</value>
+				<value>com.reservationEnligne.model.reservation</value>
 			</array>
 		</property>
 	

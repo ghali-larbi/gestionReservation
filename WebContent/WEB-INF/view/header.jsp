@@ -1,6 +1,7 @@
 <%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +12,9 @@
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <style>
+   body{
+     overflow-x:hidden; 
+   }
        .about .content {
   background-color: #f6f9ff;
   padding: 40px;
@@ -99,5 +103,5 @@
 			</ul>
 		</nav>
 	</header> 
-	<img src="http://via.placeholder.com/640x360" width="100%" height="300">
+	<img src="https://storage.googleapis.com/aocbucket/headers/students/Students_portable-bg.jpg?mtime=20200113144104&focal=none" width="100%" height="300">
 	

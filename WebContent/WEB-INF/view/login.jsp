@@ -98,6 +98,7 @@
   color: #EF3B3A;
 }
 body {
+
   background:  lightblue url("image/imgLogin.jpg") ; /* fallback for old browsers */
  background-size: cover;
   font-family: "Roboto", sans-serif;
@@ -107,8 +108,8 @@ body {
 .error{
 color:red;
 }
-</style>
 
+</style>
 </head>
 <body>
 <div class="login-page">
@@ -118,6 +119,7 @@ color:red;
 	            <input type="text" placeholder="email" name="email">
 				<input type="password" placeholder="password" name="password">		
 				<button type="submit">login</button>
+				 <p class="message">Not registered? <a href="register">Create an account</a></p>
 	</form>
 	</div>
 	</div>

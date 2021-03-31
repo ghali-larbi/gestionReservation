@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="http://via.placeholder.com/400x300" class="img-fluid" alt="">
+            <img src="https://www.studenthouse.ma/wp-content/uploads/2020/05/The-Student-House-2-scaled-1.jpg" witdh="400"  class="img-fluid" alt="">
           </div>
         </div>
       </div>
